@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using IEXTrading.DataAccess;
 using Microsoft.EntityFrameworkCore;
 
-namespace MVCTemplate
+namespace MVCTradingAppTemp
 {
     public class Startup
     {
@@ -23,9 +18,7 @@ namespace MVCTemplate
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration["Data:IEXTrading:ConnectionString"]));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["Data:IEXTrading:ConnectionString"]));
             services.AddMvc();
         }
 
@@ -59,4 +52,5 @@ namespace MVCTemplate
             });
         }
     }
+
 }
