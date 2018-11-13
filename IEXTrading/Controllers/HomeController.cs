@@ -10,7 +10,7 @@ using IEXTrading.Models.ViewModel;
 using IEXTrading.DataAccess;
 using Newtonsoft.Json;
 
-namespace MVCTemplate.Controllers
+namespace MVCTradingAppTemp.Controllers
 {
     public class HomeController : Controller
     {
@@ -39,7 +39,7 @@ namespace MVCTemplate.Controllers
 
             //Save comapnies in TempData
             TempData["Companies"] = JsonConvert.SerializeObject(companies);
-
+            companies = companies.GetRange(0, 10);
             return View(companies);
         }
 
@@ -166,6 +166,19 @@ namespace MVCTemplate.Controllers
             float avgprice = equities.Average(e => e.high);
             double avgvol = equities.Average(e => e.volume) / 1000000; //Divide volume by million
             return new CompaniesEquities(companies, equities.Last(), dates, prices, volumes, avgprice, avgvol);
+        }
+
+
+        public IActionResult GetTop5Stocks()
+        {
+            ViewBag.dbSucessComp = 0;
+            IEXHandler webHandler = new IEXHandler();
+            List<Company> list_of_company = webHandler.GetSymbols();
+            list_of_company = list_of_company.Where(a => a.isEnabled && a.type != "N/A").ToList();
+            List<KeyValuePair<string, Dictionary<string, Quote>>> quote_cmpy = webHandler.GetQuotes(list_of_company);
+            var cmpy = list_of_company.Where(a => quote_cmpy.Any(x => x.Key.Equals(a.symbol))).ToList();
+            TempData["Quotes"] = JsonConvert.SerializeObject(quote_cmpy);
+            TempData["Companies"] = JsonConvert.SerializeObject(cmpy); return View(cmpy);
         }
 
     }
