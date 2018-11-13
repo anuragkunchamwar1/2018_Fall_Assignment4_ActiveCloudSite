@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
 namespace IEXTrading.Models
@@ -12,6 +12,6 @@ namespace IEXTrading.Models
         public bool isEnabled { get; set; }
         public string type { get; set; }
         public string iexId { get; set; }
-        public List<Equity> Equities {get; set; }
+        public List<Equity> Equities { get; set; }
     }
 }
