@@ -11,16 +11,16 @@
         We have used https://api.iextrading.com/1.0/ref-data/symbols to fetch all the symbols associated with companies or the firms taking part in the trading system.
         Furthermore, https://api.iextrading.com/1.0/stock/market/batch?symbols={0}&types=quote is used to fetch details such as week52High, week52Low, latestPrice and other associated details which are used to calculate the top 5 stocks using below formula.
         <div>
-            Deciding factor to pick top 5 outperforming stocks=(CurrentPrice - 52WeekLow)/(52WeekHigh - 52WeekLow).
-            If above deciding factor is greater than 82% then we can deduce that the particular stock is outperforming comparatively.
-            Else, if its under or equal to 41% we deduce that the associated stock is under performing comparatively.
+            We decided to pick the top 5 outperforming stocks by using (CurrentPrice - 52WeekLow)/(52WeekHigh - 52WeekLow) calculation.
+            We have chosen a cut-off of 82% for the same. This menas, if the above calculated factor is greater than 82% then we can deduce that the particular stock is outperforming and gies in top 5 list.
+            If the factor is less than or equal to 41% we conclude that the associated stock is under performing compared to the other stocks.
         </div>
     </p>
     <h2>Self Reflection</h2>
     <p>
         We have comprehensively learned below from this assignment:
         <ul>
-            <li>Typical usage of HTML, CSS and JavaScript</li>
+            <li>We have learnt the typical usage of HTML, CSS and JavaScript</li>
             <li>Connection with databases using MVC</li>
             <li>We have gained understanding on typical POCO used to transfer data between various layers of application</li>
             <li>We have gained understanding on IEX trading web site and other associated web sites </li>
